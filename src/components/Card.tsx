@@ -38,7 +38,7 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
   const handleToggleHeart = () => {
     setLiked(!liked);
   };
-  console.log(starRating);
+  // console.log(starRating);
   return (
     <div className="rounded-sm lg:w-70 w-auto shadow-lg overflow-hidden m-4 h-[400] bg-white">
       <div className="relative flex flex-col justify-between">
@@ -88,7 +88,7 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
           <h5 className="font-bold   text-base truncate ">{title}</h5>
           <p className=" font-bold text-2xl">${price}</p>
           <div className="flex flex-row">
-            {Array.from({ length: 4 }).map(() => (
+            {Array.from({ length: 4 }).map((item) => (
               <AiFillStar className="fill-yellow-400" />
             ))}
           </div>
