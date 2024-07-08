@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
 import MaxWidthWrapper from "@/components/maxWidthWrapper";
 import { Button } from "@/components/ui/button";
+import FeaturedComponent from "@/components/FeaturedComponent";
 
 type CartItem = {
   image: string;
@@ -20,8 +21,6 @@ const Page = () => {
     const storedCartItems = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartItems(storedCartItems);
   }, []);
-
-  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -180,6 +179,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <FeaturedComponent />
     </MaxWidthWrapper>
   );
 };
