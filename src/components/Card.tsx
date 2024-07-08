@@ -25,7 +25,6 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
   const starPercentage = (rating.rate / 5) * 100;
   const starPercentageRoundedlength = `${Math.round(starPercentage / 10) * 10}`;
   const TotalStarCount = Math.floor(parseInt(starPercentageRoundedlength) / 20);
-  console.warn(starPercentageRoundedlength);
   const router = useRouter();
 
   const handleAddToCart = () => {
@@ -57,7 +56,7 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
               alt="Product Image"
               objectFit="center"
               fill
-              sizes="auto"
+              quality={50}
             />
             {isHovered && (
               <div className="absolute inset-0 flex  bg-gray-900 bg-opacity-30">
@@ -92,8 +91,8 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
           <h5 className="font-bold   text-base truncate ">{title}</h5>
           <p className=" font-bold text-2xl">${price}</p>
           <div className="flex flex-row">
-            {Array.from({ length: TotalStarCount }).map((item) => (
-              <AiFillStar className="fill-yellow-400" />
+            {Array.from({ length: TotalStarCount }).map((item, index) => (
+              <AiFillStar key={index} className="fill-yellow-400" />
             ))}
           </div>
         </div>

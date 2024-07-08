@@ -100,10 +100,12 @@ const Footer = () => {
           <div>
             <div className="relative  flex flex-col gap-9">
               <Image
+                loading="lazy"
                 src="/logo (1).svg"
                 alt="Footer Logo"
                 height={52}
                 width={200}
+                quality={70}
               />
               <div className="relative text-gray-200">
                 <p>60-49 Road 11378 New York </p>

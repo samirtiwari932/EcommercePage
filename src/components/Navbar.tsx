@@ -22,7 +22,13 @@ const Navbar = () => {
     <nav className="bg-white z-50">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center space-x-3 w-40 md:w-auto">
-          <Image src="/logo.svg" width={200} height={52} alt="Logo Image" />
+          <Image
+            priority
+            src="/logo.svg"
+            width={200}
+            height={52}
+            alt="Logo Image"
+          />
         </Link>
 
         <div className="lg:hidden">
@@ -71,6 +77,7 @@ const Navbar = () => {
                 width={24}
                 height={24}
                 alt="Search Icon"
+                quality={70}
               />
             </li>
             <Link href="/cart">
@@ -80,6 +87,7 @@ const Navbar = () => {
                   width={18}
                   height={18}
                   alt="whilist-bag"
+                  quality={70}
                 />
                 {totalItemsInCart > 0 ? (
                   <span className="bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center absolute top-0 right-0 -mt-1 -mr-1">
@@ -99,6 +107,7 @@ const Navbar = () => {
                 width={24}
                 height={24}
                 alt="Favourite"
+                quality={70}
               />
             </li>
             <li>
@@ -106,6 +115,7 @@ const Navbar = () => {
                 src="/icons/Ellipse 2.svg"
                 width={48}
                 height={48}
+                quality={100}
                 alt="Profile"
               />
             </li>

@@ -89,7 +89,7 @@ const Page = () => {
                           alt={item.title}
                           height={100}
                           width={100}
-                          objectFit="center"
+                          style={{ objectFit: "contain" }}
                         />
                       </div>
                       <div className="ml-4 hidden lg:flex flex-1 flex-col gap-4">
@@ -171,7 +171,7 @@ const Page = () => {
               <Button
                 className="bg-main rounded-xl text-white px-4 py-2"
                 onClick={() => {
-                  console.log("Checkout clicked");
+                  toast.success("Thank you ! ,Stay Tuned ");
                 }}
               >
                 Checkout

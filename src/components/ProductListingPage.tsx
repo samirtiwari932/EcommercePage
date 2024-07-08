@@ -9,6 +9,9 @@ import { useQuery } from "@tanstack/react-query";
 import * as ApiClient from "../api-client";
 import FeaturedComponent from "./FeaturedComponent";
 import toast from "react-hot-toast";
+import { Skeleton } from "./ui/skeleton";
+import SkeletonComponent from "./SkeletonComponent";
+import SkeletonGrid from "./SkeletonComponent";
 
 const ProductListingPage = () => {
   const [limit, setLimit] = useState<number>(10);
@@ -19,17 +22,14 @@ const ProductListingPage = () => {
     limit: limit.toString(),
     categories: selectedCategory,
   };
-  const { data: productList } = useQuery({
+  const { data: productList, isLoading } = useQuery({
     queryKey: ["product-list", searchParams],
     queryFn: () => ApiClient.searchProduct(searchParams),
   });
 
   if (!productList) return;
-
   const indexOfLastProduct = currentPage * flag;
-  console.warn(indexOfLastProduct);
   const indexOfFirstProduct = indexOfLastProduct - flag;
-  console.warn(indexOfFirstProduct);
   const currentProducts = productList.slice(
     indexOfFirstProduct,
     indexOfLastProduct
@@ -61,18 +61,22 @@ const ProductListingPage = () => {
           <h3 className="text-2xl font-bold mb-4">
             Women’s Collection: Tops, Bottoms, Jackets + More
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 mb-10">
-            {currentProducts?.map((product: any) => (
-              <Card
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                price={product.price}
-                image={product.image}
-                rating={product.rating}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <SkeletonGrid />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 mb-10">
+              {currentProducts?.map((product: any) => (
+                <Card
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  price={product.price}
+                  image={product.image}
+                  rating={product.rating}
+                />
+              ))}
+            </div>
+          )}
           <PaginationComponent
             currentPage={currentPage}
             itemsPerPage={flag}
