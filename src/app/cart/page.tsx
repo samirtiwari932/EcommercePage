@@ -6,6 +6,7 @@ import { AiFillStar } from "react-icons/ai";
 import MaxWidthWrapper from "@/components/maxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import FeaturedComponent from "@/components/FeaturedComponent";
+import toast, { Toaster } from "react-hot-toast";
 
 type CartItem = {
   image: string;
@@ -31,26 +32,27 @@ const Page = () => {
     newCartItems[index].quantity = newQuantity;
     setCartItems(newCartItems);
     localStorage.setItem("cart", JSON.stringify(newCartItems));
+    toast.success("Item added successfully");
   };
 
   const handleRemove = (index: number) => {
     const newCartItems = [...cartItems];
     if (newCartItems[index].quantity > 1) {
+      toast.success("One Item removed ");
       newCartItems[index].quantity -= 1;
     } else {
+      toast.success("Item Removed Successfully");
       newCartItems.splice(index, 1);
     }
     setCartItems(newCartItems);
     localStorage.setItem("cart", JSON.stringify(newCartItems));
   };
 
-  // Calculate subtotal
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  // Placeholder values for shipping and total (you can modify these as per your logic)
   const shipping = 100;
   const total = subtotal + shipping;
 
@@ -151,7 +153,6 @@ const Page = () => {
           </table>
         </div>
 
-        {/* Subtotal, Shipping, Total and Checkout Button Section */}
         <div className="mt-8 border-t pt-8">
           <div className="flex flex-col gap-4 items-end">
             <div className="flex justify-between items-center w-1/2 gap-4">

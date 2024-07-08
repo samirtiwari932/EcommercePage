@@ -1,16 +1,15 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
-import * as apiCLient from "../api-client";
 import Image from "next/image";
-import { AiFillHeart, AiFillStar } from "react-icons/ai";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { Button } from "./ui/button";
-import { MdOutlineShoppingBag } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { AiFillStar } from "react-icons/ai";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { MdOutlineShoppingBag } from "react-icons/md";
+import { Button } from "./ui/button";
+import toast from "react-hot-toast";
 
 interface CardProps {
-  id?: number; // Optional id
+  id?: number;
   title: string;
   price: number;
   image: string;
@@ -23,7 +22,10 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [liked, setLiked] = useState(false);
-  const starRating = rating.count / rating.rate / 50;
+  const starPercentage = (rating.rate / 5) * 100;
+  const starPercentageRoundedlength = `${Math.round(starPercentage / 10) * 10}`;
+  const TotalStarCount = Math.floor(parseInt(starPercentageRoundedlength) / 20);
+  console.warn(starPercentageRoundedlength);
   const router = useRouter();
 
   const handleAddToCart = () => {
@@ -31,14 +33,16 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
     const newItem = { id, title, price, image, quantity: 1 };
     cartItems.push(newItem);
     localStorage.setItem("cart", JSON.stringify(cartItems));
+    toast.success("Product Added Successfully");
 
     router.push("/cart");
   };
 
   const handleToggleHeart = () => {
     setLiked(!liked);
+    toast.success("Added to Favourites");
   };
-  // console.log(starRating);
+
   return (
     <div className="rounded-sm lg:w-70 w-auto shadow-lg overflow-hidden m-4 h-[400] bg-white">
       <div className="relative flex flex-col justify-between">
@@ -88,7 +92,7 @@ const Card: React.FC<CardProps> = ({ id, title, price, image, rating }) => {
           <h5 className="font-bold   text-base truncate ">{title}</h5>
           <p className=" font-bold text-2xl">${price}</p>
           <div className="flex flex-row">
-            {Array.from({ length: 4 }).map((item) => (
+            {Array.from({ length: TotalStarCount }).map((item) => (
               <AiFillStar className="fill-yellow-400" />
             ))}
           </div>

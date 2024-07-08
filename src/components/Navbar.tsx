@@ -1,19 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import MaxWidthWrapper from "./maxWidthWrapper";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "./ui/navigation-menu";
-import { GiHamburgerMenu } from "react-icons/gi";
-import mobileMenu from "./mobileMenu";
 import MobileMenu from "./mobileMenu";
 
 const Navbar = () => {
@@ -22,7 +11,6 @@ const Navbar = () => {
   useEffect(() => {
     // Retrieve cart items from localStorage
     const storedCartItems = JSON.parse(localStorage.getItem("cart") || "[]");
-    // Calculate total items in the cart
     const totalItems = storedCartItems.reduce(
       (acc: number, item: { quantity: number }) => acc + item.quantity,
       0
