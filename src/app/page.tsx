@@ -1,4 +1,5 @@
 import CategoryFllter from "@/components/CategoryFllter";
+import ProductListingPage from "@/components/ProductListingPage";
 import SizeAndColorFilter from "@/components/SizeandColorFilter";
 import MaxWidthWrapper from "@/components/maxWidthWrapper";
 import Image from "next/image";
@@ -12,7 +13,7 @@ export default function Home() {
             <CategoryFllter />
             <SizeAndColorFilter />
           </div>
-          <div className="bg-red-700">This is the 2nd div</div>
+          <ProductListingPage/>
         </div>
       </MaxWidthWrapper>
     </>
