@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import MaxWidthWrapper from "@/components/maxWidthWrapper";
 import Footer from "@/components/Footer";
+import QueryClientComponent from "@/components/QueryClientProvider";
 
 const nunito = Nunito_Sans({ subsets: ["latin"] });
 
@@ -24,11 +25,14 @@ export default function RootLayout({
         className={cn("relative h-full font- antialiased ", nunito.className)}
       >
         <main className=" relative flex flex-col min-h-screen">
-          <MaxWidthWrapper className="sticky top-0 ">
-            <Navbar />
-          </MaxWidthWrapper>
-          <div className="flex-grow flex-1 min-h-[80vh]">{children}</div>
-          <Footer />
+          <QueryClientComponent>
+            <MaxWidthWrapper className="sticky top-0 z-50 ">
+              <Navbar />
+            </MaxWidthWrapper>
+            <div className="flex-grow flex-1 min-h-[80vh]">{children}</div>
+
+            <Footer />
+          </QueryClientComponent>
         </main>
       </body>
     </html>

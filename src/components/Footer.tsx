@@ -3,8 +3,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-main ">
-      <div className="mx-auto w-full max-w-screen-xl">
+    <footer className="bg-main  ">
+      <div className="mx-auto w-full max-w-screen-xl overflow-x-hidden">
         <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4 border-b border-gray-100 border-opacity-10">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-white uppercase ">
@@ -134,8 +134,7 @@ const Footer = () => {
         <div className="px-4 py-6 bg-main   md:flex md:items-center md:justify-center">
           <div>
             <span className="text-sm text-gray-200 dark:text-gray-300 sm:text-center">
-              Copyright © 2023 <a href="https://flowbite.com/"></a>. All Rights
-              Reserved.
+              Copyright © 2023 . All Rights Reserved.
             </span>
           </div>
         </div>
