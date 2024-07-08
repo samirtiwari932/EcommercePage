@@ -8,6 +8,7 @@ import CategoryFllter from "./CategoryFllter";
 import { useQuery } from "@tanstack/react-query";
 import * as ApiClient from "../api-client";
 import FeaturedComponent from "./FeaturedComponent";
+import toast from "react-hot-toast";
 
 const ProductListingPage = () => {
   const [limit, setLimit] = useState<number>(10);
@@ -38,9 +39,12 @@ const ProductListingPage = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleCategoryTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCategoryTypeChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setSelectedCategory(e.target.value);
     setCurrentPage(1);
+    toast.success("Fetched Successfully");
   };
 
   return (
